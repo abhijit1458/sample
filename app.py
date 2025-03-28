@@ -2,6 +2,7 @@ from fastapi import FastAPI, File, HTTPException, Query, UploadFile, Request
 # from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 # import uvicorn
+from dotenv import load_dotenv
 import pandas as pd
 from pathlib import Path
 import shutil
@@ -13,7 +14,10 @@ import traceback
 
 app = FastAPI()
 
+load_dotenv()
+
 AIPROXY_TOKEN = os.getenv("AIPROXY_TOKEN")
+
 if not AIPROXY_TOKEN:
     raise ValueError("AIPROXY_TOKEN environment variable not set. Make sure it's defined in your .env file.")
 
